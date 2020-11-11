@@ -1,0 +1,5 @@
+/.idea/
+/.vagrant/
+/packer_cache/
+*/build/
+

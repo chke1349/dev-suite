@@ -88,6 +88,11 @@ Vagrant.configure('2') do |config|
     #    sudo apt-get update && sudo apt-get install -y ubuntu-desktop
     #SHELL
 
+    config.vm.provision 'install-lens',  type: 'shell', run: 'never', inline: <<-SHELL
+        #https://snapcraft.io/install/kontena-lens/ubuntu
+        sudo snap install kontena-lens --classic
+    SHELL
+
     # Update the system and install all necessary tools
     #config.vm.provision 'init-tools',  type: 'shell', run: 'once', path: './install.sh'
 
@@ -111,11 +116,11 @@ Vagrant.configure('2') do |config|
     #SHELL
 
 
-  config.vm.provision 'init-german',  type: 'shell', run: 'always', inline: <<-SHELL
+  #config.vm.provision 'init-german',  type: 'shell', run: 'always', inline: <<-SHELL
         #Set bash keyboard to german
         #sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'de'\"/g' /etc/default/keyboard
 
         #Set gnome keyboard to german
         #echo 'sudo gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'de')]"' > /home/vagrant/.profile
-  SHELL
+  #SHELL
 end

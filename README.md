@@ -16,7 +16,7 @@ Other OS and maybe other virtualization products will follow.
 * NodeJS 12 LTS
 * IntelliJ Community Edition
 
-##Quickstart
+## Quickstart
 Install following tools to use all features. Install Packer if you will build a custom box.  
 
 * [Vagrant](https://www.vagrantup.com/downloads.html)

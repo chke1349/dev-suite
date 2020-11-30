@@ -223,9 +223,24 @@
   ],
   "post-processors": [
     {
-      "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box",
-      "type": "vagrant"
-    }
+      "type": "vagrant",
+      "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box"
+    },
+    [
+      {
+        "type": "artifice",
+        "files": [
+          "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box"
+        ]
+      },
+      {
+        "type": "vagrant-cloud",
+        "access_token": "{{user `cloud_token`}}",
+        "box_tag": "ckeller/{{user `box_basename`}}",
+        "keep_input_artifact": true,
+        "version": "{{user `version`}}"
+      }
+    ]
   ],
   "provisioners": [
     {
@@ -257,6 +272,7 @@
     "box_basename": "dev-vm_ubuntu-20.04",
     "build_directory": "{{template_dir}}/../builds",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cloud_token": "8Uo6FMMIWUwC1Q.atlasv1.BmB8yprFuoOUGBi9aYr5VCWNzYDmY9Fxwx2QvF1u1eQi3EPpzFyyMqG0OnVkDzn8UJA",
     "cpus": "4",
     "disk_size": "75536",
     "guest_additions_url": "",
@@ -274,6 +290,7 @@
     "name": "ubuntu-20.04",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
-    "template": "ubuntu-20.04-amd64"
+    "template": "ubuntu-20.04-amd64",
+    "version": "0.0.1"
   }
 }

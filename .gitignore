@@ -1,5 +1,10 @@
 /.idea/
 /.vagrant/
+
+# Exclude temporary packer files
 /packer_cache/
 */builds/
 
+# Include share folder but not the shared files
+!/share/.gitkeep
+/share/*

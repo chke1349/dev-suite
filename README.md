@@ -44,3 +44,9 @@ Default settings can be changed in the Vagrantfile:
   
 * Shared folder:
   * ./share
+
+Default settings can be changed in the Vagrantfile:
+
+#### Replace IntelliJ-Community with Ultimate version
+Run the following command after the vm is up:
+`vagrant provision --provision-with intellij-ultimate`

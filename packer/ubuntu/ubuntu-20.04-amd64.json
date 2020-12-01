@@ -256,6 +256,7 @@
         "{{template_dir}}/scripts/update.sh",
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
+        "{{template_dir}}/scripts/vagrant.sh",
         "{{template_dir}}/../common_scripts/virtualbox.sh",
         "{{template_dir}}/scripts/vmware.sh",
         "{{template_dir}}/../common_scripts/parallels.sh",

@@ -27,10 +27,8 @@ Vagrant.configure('2') do |config|
 
     # Use Ubuntu 20.04
     config.vm.box = 'dev-vm_ubuntu-20.04'
-    #config.vm.box = 'dev-vm-ubuntu-18'
 
     config.vm.define "DevVM"
-    
     # Check for Updates on start up
     #config.vm.box_check_update = true
 
@@ -51,8 +49,8 @@ Vagrant.configure('2') do |config|
     # Setup VM
     config.vm.provider 'virtualbox' do |vb|
       vb.check_guest_additions = true
-      #vb.cpus = 4
       vb.gui = true
+      # Set memory
       vb.customize ["modifyvm", :id, "--memory", "8192"]
       # Set the number of virtual CPUs for the virtual machine
       vb.customize ["modifyvm", :id, "--cpus", "4"]
@@ -84,43 +82,13 @@ Vagrant.configure('2') do |config|
     # Beginn Provisioner #
     ######################
 
-    #config.vm.provision 'intellij-community',  type: 'shell', run: 'once', inline: <<-SHELL
-    #    sudo apt-get update && sudo apt-get install -y ubuntu-desktop
-    #SHELL
+    config.vm.provision 'intellij-ultimate',  type: 'shell', run: 'never', inline: <<-SHELL
+        sudo snap remove intellij-idea-community --classic
+        sudo snap install intellij-idea-ultimate --classic
+    SHELL
 
     config.vm.provision 'install-lens',  type: 'shell', run: 'never', inline: <<-SHELL
         #https://snapcraft.io/install/kontena-lens/ubuntu
         sudo snap install kontena-lens --classic
     SHELL
-
-    # Update the system and install all necessary tools
-    #config.vm.provision 'init-tools',  type: 'shell', run: 'once', path: './install.sh'
-
-    # Install IntelliJ Community Edition
-    #config.vm.provision 'intellij-c',  type: 'shell', run: 'once', inline: <<-SHELL
-    #    sudo snap install intellij-idea-community --classic
-    #SHELL
-
-    # Init jhipster example app
-    #config.vm.provision 'init-jhipster-example',  type: 'shell', run: 'once', inline: <<-SHELL
-    #    sudo curl -L 'https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)' -o /usr/local/bin/docker-compose
-    #    chmod +x /usr/local/bin/docker-compose
-    #    ln -sfn /usr/local/bin/docker-compose /usr/bin/docker-compose
-    #SHELL
-
-    # Init example app
-    #config.vm.provision 'init-example',  type: 'shell', run: 'once', inline: <<-SHELL
-    #    sudo curl -L 'https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)' -o /usr/local/bin/docker-compose
-    #    chmod +x /usr/local/bin/docker-compose
-    #    ln -sfn /usr/local/bin/docker-compose /usr/bin/docker-compose
-    #SHELL
-
-
-  #config.vm.provision 'init-german',  type: 'shell', run: 'always', inline: <<-SHELL
-        #Set bash keyboard to german
-        #sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'de'\"/g' /etc/default/keyboard
-
-        #Set gnome keyboard to german
-        #echo 'sudo gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'de')]"' > /home/vagrant/.profile
-  #SHELL
 end

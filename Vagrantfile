@@ -83,7 +83,7 @@ Vagrant.configure('2') do |config|
     ######################
 
     config.vm.provision 'intellij-ultimate',  type: 'shell', run: 'never', inline: <<-SHELL
-        sudo snap remove intellij-idea-community --classic
+        sudo snap remove intellij-idea-community
         sudo snap install intellij-idea-ultimate --classic
     SHELL
 

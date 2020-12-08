@@ -12,8 +12,8 @@ Other OS and maybe other virtualization products will follow.
 * Docker
 * Docker Compose
 * KubeCtl
-* Java 11 LTS (AdoptOpenJDK)
-* NodeJS 12 LTS
+* Java (latest AdoptOpenJDK, OpenJ9)
+* NodeJS (latest)
 * IntelliJ Community Edition
 
 ## Quickstart

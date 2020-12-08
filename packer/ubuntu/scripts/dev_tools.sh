@@ -5,12 +5,12 @@ echo "Add docker repository"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-echo "Add Java 11 LTS (AdoptOpenJdk) repository"
+echo "Add AdoptOpenJdk repository"
 wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
 add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 
-echo "Install docker, necessary libraries for guest additions, Vagrant NFS Share"
-apt-get -y -q install docker-ce docker-ce-cli containerd.io adoptopenjdk-11-hotspot adoptopenjdk-11-hotspot-jre
+echo "Install docker, container.d and Java"
+apt-get -y -q install docker-ce docker-ce-cli containerd.io adoptopenjdk-15-openj9 adoptopenjdk-15-openj9-jre
 echo "Add vagrant user to docker group"
 usermod -aG docker vagrant
 
@@ -25,7 +25,7 @@ echo "Install IntelliJ Community"
 snap install intellij-idea-community --classic
 
 echo "Install NodeJs LTS"
-curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+curl -sL https://deb.nodesource.com/setup_current.x | bash -
 apt-get install -y nodejs
 
 echo "Install Kubectl"
